@@ -4,6 +4,7 @@
 # It will be required from either `config.ru` or `start.rb`
 require 'rubygems'
 require 'ramaze'
+require 'sequel'
 
 # Make sure that Ramaze knows where you are
 Ramaze.options.roots = [__DIR__]

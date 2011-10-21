@@ -1,0 +1,34 @@
+<form method="post" action="#{r 'create'}">
+  <fieldset>
+    <legend>Create a shortie :</legend>
+    <label for="form-url">URL:</label>
+    <input id="form-url" name="url" type="text" value="#{@url}" />
+    <input type="submit" value="Create" />
+  </fieldset>
+</form>
+
+#{flashbox}
+
+<p>
+<?r if @shorties.empty? ?>
+  No Shorts
+<?r else ?>
+<table summary="Shorts defined">
+    <caption>
+      Shorties
+    </caption>
+    <tr><th>Short Url</th><th>Target Url</th></tr>
+    <?r @shorties.each do |s| ?>
+      <tr>
+        <td> <a href="/#{s.shorturl}">/#{s.shorturl}</a>  </td>
+        <td> #{s.longurl} </td>
+      </tr>
+    <?r end ?>
+  </table>
+<?r end ?>
+
+#{if @shorties.respond_to?(:navigation) and @shorties.page_count > 1
+  @shorties.navigation
+end}
+
+</p>

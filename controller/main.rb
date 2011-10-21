@@ -10,8 +10,23 @@
 # this will force the controller to be mounted on: /otherurl.
 class MainController < Controller
   # the index action is called automatically when no other action is specified
-  def index
-    @title = 'Welcome to Ramaze!'
+  def index(short=nil)
+    #@title = 'Welcome to Ramaze!'
+    puts short
+    if short==nil
+      redirect 'notemplate'
+    end
+    
+    puts "looking for /#{short}"
+    s = Short.find(:shorturl => short)
+    
+    if s.nil?
+    end
+    
+    url = s.longurl
+    puts url
+    
+    redirect "http://#{url}"
   end
 
   # the string returned at the end of the function is used as the html body
